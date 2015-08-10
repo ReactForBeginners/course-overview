@@ -2,7 +2,7 @@
 
 This course will teach you the basics of React.js through three nights in NYC in August 2015. The course is already fully booked, but all the learning materials are available for everybody.
 
-### Schedule
+### Schedule:
 
 ## Day 1
 
