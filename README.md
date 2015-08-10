@@ -29,10 +29,10 @@ This course will teach you the basics of React.js through three nights in NYC in
 
 # Lectures & Exercises
 
-As you can see from the schedule, the course consists mainly of exercises, in addition to two lectures. The notes for the lectures can be found in the lectures folder in this repository.  
+As you can see from the schedule, the course consists mainly of exercises, in addition to two lectures. The notes for the lectures can be found in the lecture folders in this repository.  
 
 The first two exercises does not involve any setup, as we want to keep the barrier for starting to code as low as possible.  
 
-On day 3 you'll learn how to setup your dev environment for and optimal workflow, using Gulp/Browserify and Babel. You'll use this envirnoment as a boilderplate for the third and final exercise.
+On day 3 you'll learn how to setup your dev environment for an optimal workflow, using Gulp/Browserify and Babel. You'll use this as a boilderplate for the third and final exercise.
 
 
