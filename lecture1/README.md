@@ -17,16 +17,16 @@ The createClass method takes one argument, which is called the specification obj
 
 So within it, you'll return whatever you want React to render on the page, naturally. In the case above, we simply want to render a button.   
 
-Note: The render function is a description of the UI at **any given time.** So if the data within the return statement in the function changes, React will take care of updateing the UI accordingly.
+Note: The return statement in the render function is a description of the UI at **any given time.** So if the data within it changes, React will take care of updating the UI accordingly.
 
 
 ## JSX
 
-The HTML'ish syntax within the render function is not actually HTML, but something called JSX. This is simply a syntax extension for Javascript which enables you to write JS with XML-like tags. So the tags are actually function calls, but for now you can simply think of it as just HTML/XML with a few extra abilities.  
+The HTML'ish syntax within the render function is not actually HTML, but something called JSX. This is simply a syntax extension for Javascript which enables you to write JS with XML-like tags. So the tags are actually function calls, and not HTML. But for now, you can simply think of it as just HTML/XML with a few extra abilities.  
 
 ## Multiple components
 
-If you want to nest multiple components together, you do this within the return statement of the render function, like we're doing below, where we're nesting the. At this point the **App** component owns the **ButtonForm** component. It's a parent-child relationship you probably recognize from HTML.
+If you want to nest multiple components together, you do this within the return statement in the render function, like we're doing below, where we're nesting  **ButtonForm** within the **App** component. At this point the **App** component owns the **ButtonForm** component. It's the type of parent-child relationship you probably recognize from HTML.
 
 	var ButtonForm = React.createClass({
 		render: function(){
@@ -52,17 +52,27 @@ If you want to nest multiple components together, you do this within the return 
 	
 	React.render(<App />,  document.getElementById("content"));
 
-The *React.render()* function you see below the two components takes care of 'kickstarting' the rendering, and renders the root component (the common ancestor for all the compoents). It simply renders this component into the DOM in the specified container. 
+The *React.render()* function you see below the two components takes care of 'kickstarting' the rendering, and renders the root component (the common ancestor for all the components) into the DOM in the specified container. 
 
 ## Props & State
 
-There are two types of data in React; state and props. The difference between the two is a bit tricky to understand in the beginning, at least conseptually. But once you start working with the library, you'll quickly manage to separate the two.  
+There are two types of data in React; state and props. The difference between the two is a bit tricky to understand in the beginning, at least conseptually. But once you start working with the library, you'll quickly manage to separate the two from each other.  
 
-The key difference is that state is private and controlled from within the component itself. Props are external and controlled by whatever renders the component. So a component can not change its own props directly, only indirectly. A component can, however, change its own state. As a beginner, you can think of state as dynamic data and props as static data, even though that's bit too simplified.  
+The key difference is that state is private and controlled from within the component itself. Props are external and controlled by whatever renders the component. So a component can not change its own props directly, only indirectly. A component can, however, change its own state. As a beginner, you can think of state as dynamic data and props as static data, at least from the perspective of the within the components, even though that's bit too simplified, as the props do change all the time.
 
 **Props**  
 
-Let's start off by looking a bit closer on props, as it forces us to understand Reacts one directional data flow. Below is a component which is initialized with some props.
+Let's start off by looking a bit closer on props, as it forces us to understand Reacts one directional data flow. 
+
+Lets have a look at our little button app and initialize it with some data, using props. Firstly we'll need to grab the data from somewhere. This could for example be done using an Ajax call to fetch some data from an API, but for now we'll just hard code it in as a variable:
+	
+	var BUTTONTEXT = "Click the button";
+
+Now the way we give this data to the component is by the same way you'd specify an HTML elements attributes.
+
+	<App text={BUTTONTEXT} />
+
+This is how it looks like if we use props to store the description above the button in our little app example:
 
 		var BUTTONTEXT = "Click the damn button";
 
@@ -101,3 +111,49 @@ ButtonForm on the other hand, use the props as a descrption text above the butto
 This way of passing props - from parent to child  - is how data is passed around in React apps. It's passed down the chain; always as props.  
 
 **State** 
+
+Now lets have a look at the other way of storing data in React, which is in the component’s state. If you want the data to change - for example based on user interactions - it most likely has stored in a component's state somewhere in the app, in what we call a stateful component.
+
+Hence, state is what you use when you want to update the UI; every time the UI changes, it's ultimately a consequence of one component's changing its state.
+
+As mentioned previously, state is private for whomever component that owns it. If you want to pass the data on to a child of the component it **must be done using props.** This means that one components state is normally another components props.  
+
+Let's have a look at how to work with state. First of all, you don't initialize it through JSX, as oyu do with props. You do it through **getInitialState()**instead.
+
+The way we change that state is by **this.setState().** The following example illustrates how to use state:
+
+	var App = React.createClass({
+
+		getInitialState: function(){
+			return {
+				active: true
+			}
+		},
+
+		handleClick: function(){
+			this.setState({
+				active: !this.state.active
+			});
+		},
+		
+		render: function(){
+			var buttonSwitch = this.state.active ? "On" : "Off";
+
+			return (
+				<div>
+					<p>Click the button!</p>
+					<input type="submit" onClick={this.handleClick} />
+					<p>{buttonSwitch}</p>
+				</div>
+			);
+		}
+	});
+
+	React.render(<App />,  document.getElementById("content"));
+
+
+
+
+
+
+
