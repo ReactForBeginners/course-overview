@@ -1,4 +1,4 @@
-# React basics
+# React basics for beginners
 
 ## Components
 
