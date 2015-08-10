@@ -1,4 +1,4 @@
-#Lecture 1
+# React basics
 
 ## Components
 
@@ -92,9 +92,9 @@ Let's start off by looking a bit closer on props, as it forces us to understand 
 
 The props is being passed into the App component in the React.render() function at the bottom. This is how you initialize a component with props; it similar to how you'd add attributes to an HTML tag.  
 
-PS: The reason we're wrapping the BUTTONTEXT in curly braces it because we'll need tell the JSX that we want to add a Javascript expression.   
+PS: The reason we're wrapping the **BUTTONTEXT** in curly braces it because we'll need tell the JSX that we want to add a Javascript expression.   
 
-Now, the App component can access this data via this.props.text, and it can also pass the data down to its children too, as it does in the case above. It initializes the ButtonForm component with the same props it has got itself; passes it down the chain.
+Now, the App component can access this data via this.props.text, and it can also pass the data down to its own children, as it also does. It initializes the ButtonForm component with the same props it has got itself; passes it down the chain.
 
 ButtonForm on the other hand, use the props as a descrption text above the button.
 
