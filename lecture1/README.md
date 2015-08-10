@@ -17,9 +17,11 @@ The createClass method takes one argument, which is called the specification obj
 
 So within it, you'll return whatever you want React to render on the page, naturally. In the case above, we simply want to render a button.
 
-´´´
-Note: The render function is a description of the UI at **any given time.** So if the data within the return statement in the function changes, React will take care of updateing the UI accordingly.   
-´´´
+
+```
+Note: The render function is a description of the UI at **any given time.** So if the data within the return statement in the function changes, React will take care of updateing the UI accordingly.
+```
+
 
 ## JSX
 
