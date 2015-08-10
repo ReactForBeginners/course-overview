@@ -1,5 +1,9 @@
 # React basics for beginners
 
+This tutorial is meant for developers interested in learning React, and was written for the React.JS for Beginners course in NYC in August 2015. 
+
+It doesn't assumes that know any React beforehand, but you should be familiar with Javascript.
+
 ## Components
 
 React is built around components, not templates. You create a component by calling the createClass method on the React object, which is the entry point into the library. Like this:
