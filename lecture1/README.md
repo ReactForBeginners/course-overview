@@ -66,9 +66,9 @@ The key difference is that state is private and controlled from within the compo
 
 ### Props  
 
-Let's start off by looking a bit closer on props, as it forces us to understand Reacts one directional data flow. 
+We'll start off by looking a bit closer on props, as it forces us to understand Reacts one directional data flow, which also is critical to know about.
 
-Lets have a look at our little button app and initialize it with some data, using props. Firstly we'll need to grab the data from somewhere. This could for example be done using an Ajax call to fetch some data from an API, but for now we'll just hard code it in as a variable:
+Let's initialize our little button app with some data, using props. Firstly we'll need to grab the data from somewhere. This could for example be done using an Ajax call to fetch some data from an API, but for now we'll just hard code it in as a variable:
 	
 	var BUTTONTEXT = "Click the button";
 
@@ -76,7 +76,9 @@ The way to hand this data to a components props looks a lot like how you would s
 
 	<App text={BUTTONTEXT} />
 
-Once the **App** component is initialized like this, it can access the BUTTONTEXT variable through *this.props.text*. Let's see it in action:
+Once the **App** component is initialized like this, it can access the BUTTONTEXT variable through *this.props.text*. However, it can not change the data directly; from the components perspective, its props are immutable; its just something its initialized with.
+
+Let's see how the components are initialized with props in our app:
 
 		var BUTTONTEXT = "Click the damn button";
 
@@ -104,27 +106,33 @@ Once the **App** component is initialized like this, it can access the BUTTONTEX
 		
 		React.render(<App text={BUTTONTEXT} />,  document.getElementById("content"));
 
-You'll see the props is being passed into the App component in the React.render() function.
+The props is being passed into the **App** component in the React.render() function.
 
 PS: The reason we're wrapping the **BUTTONTEXT** in curly braces it because we'll need tell the JSX that we want to add a Javascript expression.   
 
-In addition to accessing the BUTTONTEXT variable through this.props.text, the **App** component can also pass the data down to its own children, as it does. It initializes the ButtonForm component with the same props it got itself; we're saying that passes it down the chain.
+In addition to accessing the BUTTONTEXT variable through *this.props.text*, the **App** component can also pass the data down to its own children, as it does. It initializes the **ButtonForm** component with the same props it got itself; we're simply passing the data down the chain.
 
 When the data reaches the ButtonForm, it's found its destination, as it's rendered as the descrption text above the button.
 
-This way of passing props - from parent to child - is how data is passed around in React apps. It's passed down the chain, and it's passed as props.  
+This way of passing props - from parent to child - is how data is passed around in React. It's allways passed down the chain, and it's allways passed as props.  
 
 ### State 
 
-The other way of storing data in React is in the component’s state. If you want the data to change - for example based on user interactions - it most likely has to be stored in a component's state somewhere in the app, in what we call a stateful component.
+The other way of storing data in React is in the component’s state. And unlike props - which the component seemingly can't change -  the state is mutable.  
 
-Hence, state is what you use when you want to update the UI; every time the UI changes, it's ultimately a consequence of one component's changing its state.
+So if you want the data in your app to change - for example based on user interactions - it must be stored in a component's state somewhere in the app. Or to be precise: at least some parts of the data has to be stored in a state. 
 
 As mentioned previously, state is private and owned by one component; the state is never passed down the chain. If you want to pass the data on to a child of the component it **must be done using props.**
 
-Another difference betweeen the two is that you don't initialize state through JSX, as you do with props. You do it through **getInitialState()**instead.
+** Initializing state **
 
-Also, a component can change it's own state, while it can't change it's own props (at least not directly)- The way a component changes the state is by **this.setState().** The following example illustrates the point:
+To inittalize the state simply pass a **getInitialState()** to the component, and return whatever state you want your component to begin with.
+
+** Changing state **
+
+To modify the state, simply **this.setState(),** passing in the new state as the argument.  
+
+An example:
 
 	var App = React.createClass({
 
