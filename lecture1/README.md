@@ -26,7 +26,9 @@ Note: The return statement in the render function is a description of the UI at 
 
 ## JSX
 
-The HTML'ish syntax within the render function is not actually HTML, but something called JSX. This is simply a syntax extension for Javascript which enables you to write JS with XML-like tags. So the tags are actually function calls, and not HTML. But for now, you can simply think of it as just HTML/XML with a few extra abilities.  
+The HTML'ish syntax within the render function is not actually HTML, but something called JSX. This is simply a syntax extension for Javascript which enables you to write JS with XML-like tags. So the tags are actually function calls, and not HTML.  
+
+But for now, you can simply think of it as just HTML/XML with a few extra abilities.  
 
 ## Multiple components
 
