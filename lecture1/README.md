@@ -124,11 +124,11 @@ So if you want the data in your app to change - for example based on user intera
 
 As mentioned previously, state is private and owned by one component; the state is never passed down the chain. If you want to pass the data on to a child of the component it **must be done using props.**
 
-** Initializing state **
+**Initializing state**
 
 To inittalize the state simply pass a **getInitialState()** to the component, and return whatever state you want your component to begin with.
 
-** Changing state **
+**Changing state**
 
 To modify the state, simply **this.setState(),** passing in the new state as the argument.  
 
