@@ -58,13 +58,46 @@ The *React.render()* function you see below the two components takes care of 'ki
 
 There are two types of data in React; state and props. The difference between the two is a bit tricky to understand in the beginning, at least conseptually. But once you start working with the library, you'll quickly manage to separate the two.  
 
-The key difference is that state is private and controlled from within the component itself. Props are external and controlled by whatever renders the component. So a component can not change its own props directly, only indirectly. A component can, however, change its own state.  
-
-Let's start off by looking a bit closer on props, as it forces us to understand Reacts one directional data flow.  
+The key difference is that state is private and controlled from within the component itself. Props are external and controlled by whatever renders the component. So a component can not change its own props directly, only indirectly. A component can, however, change its own state. As a beginner, you can think of state as dynamic data and props as static data, even though that's bit too simplified.  
 
 **Props**  
 
+Let's start off by looking a bit closer on props, as it forces us to understand Reacts one directional data flow. Below is a component which is initialized with some props.
 
+		var BUTTONTEXT = "Click the damn button";
 
+		var ButtonForm = React.createClass({
+			render: function(){
+				return (
+					<div>
+						<h3>{this.props.text}</h3>
+						<input type="submit" />
+					</div>
+				);
+			}
+		});
 
+		var App = React.createClass({
+			render: function(){
+				return (
+					<div>
+						<h1> Welcome to my button app!</h1>
+						<ButtonForm text={this.props.text} />
+					</div>
+				);
+			}
+		});
+		
+		React.render(<App text={BUTTONTEXT} />,  document.getElementById("content"));
 
+The props is being passed into the App component in the React.render() function at the bottom. This is how you initialize a component with props; it similar to how you'd add attributes to an HTML tag.  
+
+PS: The reason we're wrapping the BUTTONTEXT in curly braces it because we'll need tell the JSX that we want to add a Javascript expression.   
+
+Now, the App component can access this data via this.props.text, and it can also pass the data down to its children too, as it does in the case above. It initializes the ButtonForm component with the same props it has got itself; passes it down the chain.
+
+ButtonForm on the other hand, use the props as a descrption text above the button.
+
+This way of passing props - from parent to child  - is how data is passed around in React apps. It's passed down the chain; always as props.  
+
+**State** 
