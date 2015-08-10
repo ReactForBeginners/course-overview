@@ -130,7 +130,7 @@ To inittalize the state simply pass a **getInitialState()** to the component, an
 
 **Changing state**
 
-To modify the state, simply **this.setState(),** passing in the new state as the argument.  
+To modify the state, simply call **this.setState(),** passing in the new state as the argument.  
 
 An example:
 
@@ -162,6 +162,12 @@ An example:
 	});
 
 	React.render(<App />,  document.getElementById("content"));
+
+
+This example also force you to get familiar with the Reacts event system, but don't worry, it's very simple. We hook an event listener onto the button, listening for the **onClick** event. When this is triggered, we call the **handleClick** function. 
+
+The **handleClick** function then call **this.setState()** which toggle the active variable between true & false.
+
 
 
 
