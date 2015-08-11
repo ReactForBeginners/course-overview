@@ -24,7 +24,7 @@ So within it, you'll return whatever you want React to render on the page, natur
 Note: The return statement in the render function is a description of the UI at **any given time.** So if the data within it changes, React will take care of updating the UI accordingly.
 
 
-## JSX - Javascript Syntax Exstension
+## JSX - Javascript Syntax Extension
 
 The HTML'ish syntax within the render function is not actually HTML, but something called JSX. This is simply a syntax extension for Javascript which enables you to write JS with XML-like tags. So the tags are actually function calls, which are transformed into React.JS code, and finally end up as HTML and Javascript in the DOM.  
 
@@ -87,9 +87,9 @@ The way to hand this data to a component's props looks a lot like how you would 
 
 	<App text={BUTTONTEXT} />
 
-Once the **App** component is initialized like this, it can access the BUTTONTEXT variable through *this.props.text*. However, it can not change the data directly; from the components perspective, its props are immutable; its just something its initialized with.
+Once the **App** component is initialized like this, it can access the BUTTONTEXT variable through *this.props.text*. However, it can not change the data directly. From the components perspective, its props are immutable. Its just something its initialized with.
 
-Let's see how the components are initialized with props in our app:
+Here's an example:
 
 		var BUTTONTEXT = "Click the damn button";
 
@@ -117,11 +117,11 @@ Let's see how the components are initialized with props in our app:
 		
 		React.render(<App text={BUTTONTEXT} />,  document.getElementById("content"));
 
-The props is being passed into the **App** component in the React.render() function.
+The props are being passed into the **App** component in the React.render() function.
 
 PS: The reason we're wrapping the **BUTTONTEXT** in curly braces it because we'll need tell the JSX that we want to add a Javascript expression.   
 
-In addition to accessing the BUTTONTEXT variable through *this.props.text*, the **App** component can also pass the data down to its own children, as it does. It initializes the **ButtonForm** component with the same props it got itself; we're simply passing the data down the chain.
+In addition to accessing the **BUTTONTEXT** variable through *this.props.text*, the **App** component can also pass the data down to its own children, as it does. It initializes the **ButtonForm** component with the same props it got itself; we're simply passing the data down the chain.
 
 When the data reaches the ButtonForm, it's found its destination, as it's rendered as the descrption text in the h3-tag above the button.
 
@@ -181,14 +181,60 @@ The **handleClick** function then calls **this.setState()** which toggle the **a
 
 ## Where should the state live?
 
-Let's say that your
+You should try and keep few components as possible stateful. A lot of components should be stateless and simply render data based its props, which is handed from a component above them in the hirearchy.  
+
+Here is a technique for figuring out where the state should live,  pulled from the original docs:
+
+* Identify every component that renders something based on that state.
+* Find a common owner component (a single component above all the components that need the state in the hierarchy).
+
+* Either the common owner or another component higher up in the hierarchy should own the state.
+
+* If you can't find a component where it makes sense to own the state, create a new component simply for holding the state and add it somewhere in the hierarchy above the common owner component.
+
 
 ## Inverse data flow
 
-We've talked a lot about how data only flows one way in React, downstream, from parent to child. That's not entirely true, as there is an inverse data flow.
+We've talked a lot about how data only flows one way in React, downstream, from parent to child. That's not entirely true, as its possible to support an inverse data flow.
 
-An example is when a form component deep into the hirearchy need to change the state in one of its ancestors components.
+An example is when a form component deep into the hirearchy need to change the state in a component higher up the hirearchy.  
 
+Below is an example of how a buttonclick in the **ButtonForm** component trigger a state change in the component above it, as it can access the **onUserClick** function. 
+	
+	var ButtonForm = React.createClass({
+		render: function(){
+			return (
+				<div>
+					<input type="submit" onClick={this.props.onUserClick} />
+					<h3>You have pressed the button {this.props.counter} times!</h3>
+				</div>
+			);
+		}
+	});
+
+	var App = React.createClass({
+		getInitialState: function(){
+			return {
+				counter: 0
+			}
+		},
+		onUserClick: function(){
+			var newCount = this.state.counter += 1;
+			this.setState({
+				counter: newCount
+			});
+		},
+		render: function(){
+			return (
+				<div>
+					<h1> Welcome to the counter app!</h1>
+					<ButtonForm counter={this.state.counter} onUserClick={this.onUserClick} />
+				</div>
+			);
+		}
+	});
+
+	React.render(<App />,  document.getElementById("content"));
 
 
 
