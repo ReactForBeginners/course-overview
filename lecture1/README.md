@@ -30,6 +30,11 @@ The HTML'ish syntax within the render function is not actually HTML, but somethi
 
 But for now, you can simply think of it as just HTML/XML with a few extra abilities.  
 
+You can write JSX in both .js and .jsx files, but you have to transform it from JSX to JS with a transpiler or pre-processor. Plus, you'll mark you script tag with text/jsx instead of text/js.
+
+	<script type="text/jsx" src="main.js">
+
+
 ## Multiple components
 
 If you want to nest multiple components together, you do this within the return statement in the render function, like we're doing below, where we're nesting  **ButtonForm** within the **App** component. At this point the **App** component owns the **ButtonForm** component. It's the type of parent-child relationship you probably recognize from HTML.
