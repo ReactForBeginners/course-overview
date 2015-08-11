@@ -65,13 +65,13 @@ If you want to nest multiple components together, you do this within the return 
 
 The **React.render()** method you see below the two components takes care of 'kickstarting' the rendering, and renders the root component (in this case **App**) into the DOM in the specified container. 
 
-Here is an example of how a component structure in React could look like. Each generation of components has its own color.
+Here is an example of how a component structure in React could look like, for a simple Todo app. Each component class has got its own color:
 
 ![image](https://github.com/ReactForBeginners/exercise1-todo/blob/gh-pages/todo.png?raw=true)
 
 ## Props & State
 
-There are two types of data in React; state and props. The difference between the two is a bit tricky to understand in the beginning, at least conceptually. But once you do so, you'll quickly manage to separate the two from each other.  
+There are two types of data in React; props and state. The difference between the two is a bit tricky to understand in the beginning, at least conceptually. But once you do so, you'll quickly manage to separate the two from each other.  
 
 The key difference is that state is private and can be changed from within the component itself. Props are external and are controlled by whatever renders the component. So a component can not change its own props directly (it can do it indirectly, but let's save that for later). A component can, however, change its own state. 
 
@@ -179,9 +179,9 @@ The **handleClick** function then calls **this.setState()** which toggle the **a
 
 ## Where should the state live?
 
-You should try and keep few components as possible stateful. A lot of components should be stateless and simply render data based its given props.
+You should try and keep as few components as possible stateful. Actually, most of your components should be stateless and simply render data based their given props.
 
-To figure out where the state should live, you can ask yourself there questions, pulled from the original React docs:
+To figure out where the state should live, you can ask yourself there questions, pulled from the original [React docs:](https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live)
 
 * Identify every component that renders something based on that state.
 * Find a common owner component (a single component above all the components that need the state in the hierarchy).
