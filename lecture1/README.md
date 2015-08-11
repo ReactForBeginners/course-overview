@@ -71,9 +71,9 @@ Here is an example of how a component structure in React could look like. Each g
 
 ## Props & State
 
-There are two types of data in React; state and props. The difference between the two is a bit tricky to understand in the beginning, before you've used them in practice. But once you do so, you'll quickly manage to separate the two from each other.  
+There are two types of data in React; state and props. The difference between the two is a bit tricky to understand in the beginning, at least conceptually. But once you do so, you'll quickly manage to separate the two from each other.  
 
-The key difference is that state is private and can be changed from within the component itself. Props are external and are controlled (and changed) by whatever renders the component. So a component can not change its own props directly (it can do it indirectly, but let's save that for later). A component can, however, change its own state. 
+The key difference is that state is private and can be changed from within the component itself. Props are external and are controlled by whatever renders the component. So a component can not change its own props directly (it can do it indirectly, but let's save that for later). A component can, however, change its own state. 
 
 ### Props  
 
