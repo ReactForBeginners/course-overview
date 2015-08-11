@@ -1,6 +1,6 @@
 # React basics for beginners
 
-This tutorial is meant for developers interested in learning React, and was written for the React.JS for Beginners course in NYC in August 2015. 
+This article consists of notes for the first lecture in the React.JS for Beginners course in NYC in August 2015. 
 
 It doesn't assumes that know any React beforehand, but you should be familiar with Javascript.
 
@@ -26,18 +26,18 @@ Note: The return statement in the render function is a description of the UI at 
 
 ## JSX
 
-The HTML'ish syntax within the render function is not actually HTML, but something called JSX. This is simply a syntax extension for Javascript which enables you to write JS with XML-like tags. So the tags are actually function calls, and not HTML.  
+The HTML'ish syntax within the render function is not actually HTML, but something called JSX. This is simply a syntax extension for Javascript which enables you to write JS with XML-like tags. So the tags are actually function calls, which are transformed into React.JS code, and finally end up as HTML and Javascript in the DOM.  
 
-But for now, you can simply think of it as just HTML/XML with a few extra abilities.  
+But for now, you can simply think of it as just HTML/XML with a few extra abilities.   
 
-You can write JSX in both .js and .jsx files, but you have to transform it from JSX to JS with a transpiler or pre-processor. Plus, you'll mark you script tag with text/jsx instead of text/js.
+Note: You can write JSX in both .js and .jsx files, but you have to transform it from JSX to JS with a transpiler or pre-processor. You'll also need to mark you script tag with text/jsx instead of text/js. Like this:
 
 	<script type="text/jsx" src="main.js">
 
 
 ## Multiple components
 
-If you want to nest multiple components together, you do this within the return statement in the render function, like we're doing below, where we're nesting  **ButtonForm** within the **App** component. At this point the **App** component owns the **ButtonForm** component. It's the type of parent-child relationship you probably recognize from HTML.
+If you want to nest multiple components together, you do this within the return statement of the render function, like we're doing below, where we're nesting  **ButtonForm** within the **App** component. At this point the **App** component owns the **ButtonForm** component. It's the type of parent-child relationship you probably recognize from HTML.
 
 	var ButtonForm = React.createClass({
 		render: function(){
@@ -63,23 +63,23 @@ If you want to nest multiple components together, you do this within the return 
 	
 	React.render(<App />,  document.getElementById("content"));
 
-The *React.render()* function you see below the two components takes care of 'kickstarting' the rendering, and renders the root component (the common ancestor for all the components) into the DOM in the specified container. 
+The *React.render()* function you see below the two components takes care of 'kickstarting' the rendering, and renders the root component/common ancestor (in this case: **App**) into the DOM in the specified container. 
 
 ## Props & State
 
-There are two types of data in React; state and props. The difference between the two is a bit tricky to understand in the beginning, at least conseptually. But once you start working with the library, you'll quickly manage to separate the two from each other.  
+There are two types of data in React; state and props. The difference between the two is a bit tricky to understand in the beginning, before you've used them in practice. But once you do so, you'll quickly manage to separate the two from each other.  
 
-The key difference is that state is private and controlled from within the component itself. Props are external and controlled by whatever renders the component. So a component can not change its own props directly, only indirectly. A component can, however, change its own state. As a beginner, you can think of state as dynamic data and props as static data, at least from the perspective of the within the components, even though that's bit too simplified, as the props do change all the time.
+The key difference is that state is private and can be changed from within the component itself. Props are external and are controlled (and changed) by whatever renders the component. So a component can not change its own props directly (it can do it indirectly, but let's save that for later). A component can, however, change its own state. 
 
 ### Props  
 
 We'll start off by looking a bit closer on props, as it forces us to understand Reacts one directional data flow, which also is critical to know about.
 
-Let's initialize our little button app with some data, using props. Firstly we'll need to grab the data from somewhere. This could for example be done using an Ajax call to fetch some data from an API, but for now we'll just hard code it in as a variable:
+Let's initialize our button app with some data, using props. First we'll need to grab the data from somewhere. This could for example be done using an Ajax call to fetch some data from an API, but for now we'll just hard code it as a variable:
 	
 	var BUTTONTEXT = "Click the button";
 
-The way to hand this data to a components props looks a lot like how you would specify an HTML element's attribute.
+The way to hand this data to a component's props looks a lot like how you would specify an HTML element's attribute.
 
 	<App text={BUTTONTEXT} />
 
@@ -121,7 +121,7 @@ In addition to accessing the BUTTONTEXT variable through *this.props.text*, the 
 
 When the data reaches the ButtonForm, it's found its destination, as it's rendered as the descrption text above the button.
 
-This way of passing props - from parent to child - is how data is passed around in React. It's allways passed down the chain, and it's allways passed as props.  
+This way of passing props down the chain - from parent to child - is how data is distributed in React. It's ** allways ** passed down the hirearchy, and it's allways passed as props.  
 
 ### State 
 
@@ -176,7 +176,9 @@ This example also force you to get familiar with the Reacts event system, but do
 The **handleClick** function then call **this.setState()** which toggle the active variable between true & false.
 
 
+## Inverse data flow
 
+At this point, it's about time to look
 
 
 
