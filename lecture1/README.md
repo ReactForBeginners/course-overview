@@ -1,12 +1,12 @@
 # React basics for beginners
 
-This article consists of notes for the first lecture in the React.JS for Beginners course in NYC in August 2015. 
+This article is the basis for the first lecture in the React.JS for Beginners course in NYC in August 2015. 
 
-It doesn't assume that know any React beforehand, but you should be familiar with Javascript.
+It doesn't assume that know any React beforehand, but you should be comfortable with Javascript.
 
 ## Your first component
 
-React is built around components, not templates. You create a component by calling the createClass method on the React object, which is the entry point into the library. Like this:
+React is built around components, not templates. You create a component by calling the *createClass* method on the React object, which is the entry point into the library. Like this:
 
 
 	var ButtonApp = React.createClass({
@@ -17,11 +17,11 @@ React is built around components, not templates. You create a component by calli
 		}
 	});
 
-The createClass method takes one argument, which is called the specification object. This object contains all the methods for the given component class. The most important one is the **render()** method, which is triggered when the component is ready to be drawn on the page.  
+The *createClass* method takes one argument: the specification object. This object contains all the methods for the given component class. The most important one is the **render()** method, which is triggered when the component is ready to be drawn on the page.  
 
-Within it, you'll return whatever you want React to render on the page. In the case above, we want it to create a button.   
+Within it, you'll return a description of what you want React to render on the page. In the case above, we simply want it to render a button.   
 
-Note: The return statement in the render function is a description of the UI at **any given time.** So if the data within it changes, React will take care of updating the UI accordingly.
+Note: The render function is a description of the UI at **any given time.** So if the data within it changes, React will take care of updating the UI accordingly.
 
 
 ## JSX - Javascript Syntax Extension
@@ -71,9 +71,11 @@ A good habit is to create a mockup of your UI before you start coding, and separ
 
 ## Props & State
 
-There are two types of data in React; props and state. The difference between the two is a bit tricky to understand in the beginning, at least conceptually. But once you do so, you'll quickly manage to separate the two from each other.  
+There are two types of data in React; props and state. The difference between the two is a bit tricky to understand in the beginning, at least conceptually. But once you start coding, you'll quickly manage to separate the two from each other.  
 
-The key difference is that state is private and can be changed from within the component itself. Props are external and are controlled by whatever renders the component. So a component can not change its own props directly (it can do it indirectly, but let's save that for later). A component can, however, change its own state. 
+The key difference is that state is private and can be changed from within the component itself. Props are external, and not controlled by the component itself. It's passed down from components higher up the hireachy, whom also control the data.  
+
+So while a component can not change its own props directly (it can do it indirectly, but let's save that for later), it can change its own state. 
 
 ### Props  
 
@@ -129,9 +131,9 @@ This way of passing props down the chain - from parent to child - is how data is
 
 The other way of storing data in React is in the component’s state. And unlike props - which are immutable from the components perspective -  the state is mutable.  
 
-So if you want the data in your app to change - for example based on user interactions - it must be stored in a component's state somewhere in the app. (Or to be precise: at least some parts of the data has to be stored in a state.)
+So if you want the data in your app to change - for example based on user interactions - it must be stored in a component's state somewhere in the app.  
 
-As mentioned previously, state is private. It's owned by one component and it can't be passed down the chain. If you want to pass the data down to a child component, you'll have to pass is as a props.
+As state is private and owned by one component only, it can't be passed down the chain to child components. If you want to pass the data down to a child, you'll have to pass is as a props.  
 
 **Initializing state**
 
@@ -177,9 +179,11 @@ This example also force you to get familiar with the Reacts event system, but do
 
 The **handleClick** function then calls **this.setState()** which toggle the **active** variable between true & false.
 
+Note: Reacts [events](https://facebook.github.io/react/docs/events.html) are synthetic; they are cross browser wrappers around the browser's native events. So React makes sure that your chosen event works identically across all browsers.
+
 ## Where should the state live?
 
-You should try and keep as few components as possible stateful. Actually, most of your components should be stateless and simply render data based their given props.
+In general, you should try and keep as few stateful components as possible, and also store as little data as possible in the state. If your stateless components need access to the data from the state, simply pass the data down to them as props.
 
 To figure out where the state should live, you can ask yourself there questions, pulled from the original [React docs:](https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live)
 
@@ -193,9 +197,9 @@ To figure out where the state should live, you can ask yourself there questions,
 
 ## Inverse data flow
 
-We've talked a lot about how data only flows one way in React, downstream, from parent to child. That's not entirely true, as it's possible to support an inverse data flow.
+We've talked a lot about how data only flows one way in React; from parent to child. That's not entirely true, as it's possible to add an inverse data flow.
 
-An example is when a form component deep into the hirearchy need to change the state in a component higher up the hirearchy.  
+You'll need this when a component deep into the hirearchy need to change its parent's state.  
 
 Below is an example of how a buttonclick in the **ButtonForm** component trigger a state change in the **App** component above it, as it can access the **onUserClick** function. 
 	
@@ -238,7 +242,9 @@ As you can see, we're simply passing down the onUserClick method as a props, ena
 
 # refs and findDOMNode
 
-React provides a handy way to reference DOM nodes. Simply call **React.findDOMNode(component)**, passing in the component of your choice.
+Sometimes you might want to reach into the DOM and do some changes, but not necessarily involve the state and props. In these situations, you'll need to grab the node of your choice.  
+
+Luckily React provides a handy way of grabbing DOM nodes. Simply call **React.findDOMNode(component)**, passing in the component of your choice.
 
 In order to get a reference your chosen component, you can use the *refs* attribute. Simply add a *ref* to a component like this:
 
@@ -281,4 +287,30 @@ Let's look at a proper example:
 		React.render(<App />,  document.getElementById("content"));
 
 This will result in the input text field being focused on when you click the button.
+
+## key
+
+When you're creating components dynamically, each of them need a unique "key" attribute. Like this:  
+
+	var App = React.createClass({
+		getInitialState: function(){
+			return {
+				todos: ["get food","drive home","eat food", "sleep"] 
+			}
+		},
+
+		render: function(){
+			var todos = this.state.todos.map(function(todo,index){
+				return <li key={index}>{todo}</li>
+			});				
+			return (
+				<div>
+					<h1> Welcome to the ToDo list!</h1>
+					<ul>
+						{todos}		
+					</ul>
+				</div>
+			);
+		}
+	});
 
