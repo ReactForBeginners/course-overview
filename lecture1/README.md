@@ -87,6 +87,8 @@ The way to hand this data to a component's props looks a lot like how you would 
 
 	<App text={BUTTONTEXT} />
 
+The reason we're wrapping the BUTTONTEXT in curly braces it because we'll need tell the JSX that we want to add a Javascript expression.
+
 Once the **App** component is initialized like this, it can access the BUTTONTEXT variable through *this.props.text*. However, it can not change the data directly. From the components perspective, its props are immutable. Its just something its initialized with.
 
 Here's an example:
@@ -117,9 +119,7 @@ Here's an example:
 		
 		React.render(<App text={BUTTONTEXT} />,  document.getElementById("content"));
 
-The props are being passed into the **App** component in the React.render() function.
-
-PS: The reason we're wrapping the **BUTTONTEXT** in curly braces it because we'll need tell the JSX that we want to add a Javascript expression.   
+The props are being passed into the **App** component in **React.render()**.
 
 In addition to accessing the **BUTTONTEXT** variable through *this.props.text*, the **App** component can also pass the data down to its own children, as it does. It initializes the **ButtonForm** component with the same props it got itself; we're simply passing the data down the chain.
 
