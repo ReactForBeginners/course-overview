@@ -4,7 +4,7 @@ This article consists of notes for the first lecture in the React.JS for Beginne
 
 It doesn't assumes that know any React beforehand, but you should be familiar with Javascript.
 
-## Components
+## Your first component
 
 React is built around components, not templates. You create a component by calling the createClass method on the React object, which is the entry point into the library. Like this:
 
@@ -24,7 +24,7 @@ So within it, you'll return whatever you want React to render on the page, natur
 Note: The return statement in the render function is a description of the UI at **any given time.** So if the data within it changes, React will take care of updating the UI accordingly.
 
 
-## JSX
+## JSX - Javascript Syntax Exstension
 
 The HTML'ish syntax within the render function is not actually HTML, but something called JSX. This is simply a syntax extension for Javascript which enables you to write JS with XML-like tags. So the tags are actually function calls, which are transformed into React.JS code, and finally end up as HTML and Javascript in the DOM.  
 
@@ -64,6 +64,10 @@ If you want to nest multiple components together, you do this within the return 
 	React.render(<App />,  document.getElementById("content"));
 
 The *React.render()* function you see below the two components takes care of 'kickstarting' the rendering, and renders the root component/common ancestor (in this case: **App**) into the DOM in the specified container. 
+
+Here is an example of how a component structure in React could look like, wich each generation of components marked in a specific color.
+
+![image](https://github.com/ReactForBeginners/exercise1-todo/blob/gh-pages/todo.png?raw=true)
 
 ## Props & State
 
@@ -119,21 +123,21 @@ PS: The reason we're wrapping the **BUTTONTEXT** in curly braces it because we'l
 
 In addition to accessing the BUTTONTEXT variable through *this.props.text*, the **App** component can also pass the data down to its own children, as it does. It initializes the **ButtonForm** component with the same props it got itself; we're simply passing the data down the chain.
 
-When the data reaches the ButtonForm, it's found its destination, as it's rendered as the descrption text above the button.
+When the data reaches the ButtonForm, it's found its destination, as it's rendered as the descrption text in the h3-tag above the button.
 
-This way of passing props down the chain - from parent to child - is how data is distributed in React. It's ** allways ** passed down the hirearchy, and it's allways passed as props.  
+This way of passing props down the chain - from parent to child - is how data is distributed in React. It's passed down the hirearchy, and it's passed as props.  
 
 ### State 
 
-The other way of storing data in React is in the component’s state. And unlike props - which the component seemingly can't change -  the state is mutable.  
+The other way of storing data in React is in the component’s state. And unlike props - which are immutable from the components perspective -  the state is mutable.  
 
-So if you want the data in your app to change - for example based on user interactions - it must be stored in a component's state somewhere in the app. Or to be precise: at least some parts of the data has to be stored in a state. 
+So if you want the data in your app to change - for example based on user interactions - it must be stored in a component's state somewhere in the app. (Or to be precise: at least some parts of the data has to be stored in a state.)
 
-As mentioned previously, state is private and owned by one component; the state is never passed down the chain. If you want to pass the data on to a child of the component it **must be done using props.**
+As mentioned previously, state is private. It's owned by one component and it can't be passed down the chain. If you want to pass the data down to a child component, you'll have to pass is as a props.
 
 **Initializing state**
 
-To inittalize the state simply pass a **getInitialState()** to the component, and return whatever state you want your component to begin with.
+To initialize the state simply pass a **getInitialState()** to the component, and return whatever state you want your component to begin with.
 
 **Changing state**
 
@@ -171,14 +175,19 @@ An example:
 	React.render(<App />,  document.getElementById("content"));
 
 
-This example also force you to get familiar with the Reacts event system, but don't worry, it's very simple. We hook an event listener onto the button, listening for the **onClick** event. When this is triggered, we call the **handleClick** function. 
+This example also force you to get familiar with the Reacts event system, but don't worry, it's very simple. We hook an event listener onto the button, listening for the **onClick** event. When this is triggered, we call the **handleClick** function, which is available through the **this** keyword. 
 
-The **handleClick** function then call **this.setState()** which toggle the active variable between true & false.
+The **handleClick** function then calls **this.setState()** which toggle the **active** variable between true & false.
 
+## Where should the state live?
+
+Let's say that your
 
 ## Inverse data flow
 
-At this point, it's about time to look
+We've talked a lot about how data only flows one way in React, downstream, from parent to child. That's not entirely true, as there is an inverse data flow.
+
+An example is when a form component deep into the hirearchy need to change the state in one of its ancestors components.
 
 
 
