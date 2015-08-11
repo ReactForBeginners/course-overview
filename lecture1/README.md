@@ -195,7 +195,7 @@ Here is a technique for figuring out where the state should live,  pulled from t
 
 ## Inverse data flow
 
-We've talked a lot about how data only flows one way in React, downstream, from parent to child. That's not entirely true, as its possible to support an inverse data flow.
+We've talked a lot about how data only flows one way in React, downstream, from parent to child. That's not entirely true, as it's possible to support an inverse data flow.
 
 An example is when a form component deep into the hirearchy need to change the state in a component higher up the hirearchy.  
 
@@ -235,6 +235,48 @@ Below is an example of how a buttonclick in the **ButtonForm** component trigger
 	});
 
 	React.render(<App />,  document.getElementById("content"));
+
+As you can see, we're simply passing down the onUserClick method as a props, enabling the **ButtonForm** component to *reach up* to the **App** component, and trigger one of its methods.
+
+# refs and findDOMNode
+
+React provides a handy way to reference DOM nodes. Simply call **React.findDOMNode(component)**.
+
+Use the refs attribute to reference which component you'd like to pass in as an argument in the findDOMNode() method.
+
+This is much easier demonstrated than explanied:
+
+		var ButtonForm = React.createClass({
+			focusOnField: function(){
+				React.findDOMNode(this.refs.message).focus();
+			},
+			render: function(){
+				return (
+					<div>
+						<input 
+							type="text"
+							ref="message" />
+						<input 
+							type="submit"
+							value="Focus!" 
+							onClick={this.focusOnField} />
+					</div>
+				);
+			}
+		});
+
+		var App = React.createClass({
+			render: function(){
+				return (
+					<div>
+						<h1> Welcome to the focus app!</h1>
+						<ButtonForm onUserClick={this.onUserClick} />
+					</div>
+				);
+			}
+		});
+
+		React.render(<App />,  document.getElementById("content"));
 
 
 
