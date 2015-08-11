@@ -63,7 +63,7 @@ If you want to nest multiple components together, you do this within the return 
 	
 	React.render(<App />,  document.getElementById("content"));
 
-The *React.render()* function you see below the two components takes care of 'kickstarting' the rendering, and renders the root component/common ancestor (in this case: **App**) into the DOM in the specified container. 
+The *React.render()* method you see below the two components takes care of 'kickstarting' the rendering, and renders the root component (in this case **App**) into the DOM in the specified container. 
 
 Here is an example of how a component structure in React could look like. Each generation of components has its own color.
 
