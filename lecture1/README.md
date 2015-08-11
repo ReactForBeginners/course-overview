@@ -17,20 +17,20 @@ React is built around components, not templates. You create a component by calli
 		}
 	});
 
-The createClass method takes one argument, which is called the specification object. This object contains all the methods for the given component class. The most important one is the render() function, which is triggered when the component is ready to be drawn on the page.  
+The createClass method takes one argument, which is called the specification object. This object contains all the methods for the given component class. The most important one is the **render()** method, which is triggered when the component is ready to be drawn on the page.  
 
-So within it, you'll return whatever you want React to render on the page, naturally. In the case above, we simply want to render a button.   
+Within it, you'll return whatever you want React to render on the page. In the case above, we want it to create a button.   
 
 Note: The return statement in the render function is a description of the UI at **any given time.** So if the data within it changes, React will take care of updating the UI accordingly.
 
 
 ## JSX - Javascript Syntax Extension
 
-The HTML'ish syntax within the render function is not actually HTML, but something called JSX. This is simply a syntax extension for Javascript which enables you to write JS with XML-like tags. So the tags are actually function calls, which are transformed into React.JS code, and finally end up as HTML and Javascript in the DOM.  
+The HTML'ish syntax is not actually HTML, but something called JSX. This is simply a syntax extension for Javascript which enables you to write JS with XML-like tags. So the tags are actually function calls, which are transformed into React.JS code, and finally end up as HTML and Javascript in the DOM.  
 
 But for now, you can simply think of it as just HTML/XML with a few extra abilities.   
 
-Note: You can write JSX in both .js and .jsx files, but you have to transform it from JSX to JS with a transpiler or pre-processor. You'll also need to mark you script tag with text/jsx instead of text/js. Like this:
+Note: You can write JSX in both .js and .jsx files, but you have to transform it from JSX to React.JS with a transpiler or pre-processor. You'll also need to mark you script tag with text/jsx instead of text/js. Like this:
 
 	<script type="text/jsx" src="main.js">
 
@@ -65,7 +65,7 @@ If you want to nest multiple components together, you do this within the return 
 
 The *React.render()* function you see below the two components takes care of 'kickstarting' the rendering, and renders the root component/common ancestor (in this case: **App**) into the DOM in the specified container. 
 
-Here is an example of how a component structure in React could look like, wich each generation of components marked in a specific color.
+Here is an example of how a component structure in React could look like. Each generation of components has its own color.
 
 ![image](https://github.com/ReactForBeginners/exercise1-todo/blob/gh-pages/todo.png?raw=true)
 
