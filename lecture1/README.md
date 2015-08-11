@@ -242,7 +242,7 @@ As you can see, we're simply passing down the onUserClick method as a props, ena
 
 React provides a handy way to reference DOM nodes. Simply call **React.findDOMNode(component)**.
 
-Use the refs attribute to reference which component you'd like to pass in as an argument in the findDOMNode() method.
+Use the refs attribute to reference which component you'd like to pass in as an argument in the **findDOMNode()** method.
 
 This is much easier demonstrated than explanied:
 
@@ -258,7 +258,7 @@ This is much easier demonstrated than explanied:
 							ref="message" />
 						<input 
 							type="submit"
-							value="Focus!" 
+							value="Focus on the input!" 
 							onClick={this.focusOnField} />
 					</div>
 				);
@@ -278,5 +278,5 @@ This is much easier demonstrated than explanied:
 
 		React.render(<App />,  document.getElementById("content"));
 
-
+This will result in the input text field being focused on when you click the button.
 
