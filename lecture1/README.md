@@ -2,7 +2,7 @@
 
 This article consists of notes for the first lecture in the React.JS for Beginners course in NYC in August 2015. 
 
-It doesn't assumes that know any React beforehand, but you should be familiar with Javascript.
+It doesn't assume that know any React beforehand, but you should be familiar with Javascript.
 
 ## Your first component
 
