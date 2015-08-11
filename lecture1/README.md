@@ -65,7 +65,7 @@ If you want to nest multiple components together, you do this within the return 
 
 The **React.render()** method you see below the two components takes care of 'kickstarting' the rendering, and renders the root component (in this case **App**) into the DOM in the specified container. 
 
-Here is an example of how a component structure in React could look like, for a simple Todo app. Each component class has got its own color:
+A good habit is to create a mockup of your UI, and separate the components with colors. Below is an example of how a component structure in React could look like visually, for a simple Todo app:
 
 ![image](https://github.com/ReactForBeginners/exercise1-todo/blob/gh-pages/todo.png?raw=true)
 
