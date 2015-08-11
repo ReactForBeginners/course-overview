@@ -119,11 +119,9 @@ Here's an example:
 		
 		React.render(<App text={BUTTONTEXT} />,  document.getElementById("content"));
 
-The props are being passed into the **App** component in **React.render()**.
+The props are being passed into the **App** component in **React.render()**. The **App** component can now access the **BUTTONTEXT** variable through *this.props.text*; it can also pass the data down to its own children, as it does. It initializes the **ButtonForm** component with the same props it got itself; we're simply passing the data down the chain.
 
-In addition to accessing the **BUTTONTEXT** variable through *this.props.text*, the **App** component can also pass the data down to its own children, as it does. It initializes the **ButtonForm** component with the same props it got itself; we're simply passing the data down the chain.
-
-When the data reaches the ButtonForm, it's found its destination, as it's rendered as the descrption text in the h3-tag above the button.
+When the data reaches the **ButtonForm** component, it's found its destination, as it's rendered as the descrption text in the **h3**-tag above the button.
 
 This way of passing props down the chain - from parent to child - is how data is distributed in React. It's passed down the hirearchy, and it's passed as props.  
 
@@ -181,9 +179,9 @@ The **handleClick** function then calls **this.setState()** which toggle the **a
 
 ## Where should the state live?
 
-You should try and keep few components as possible stateful. A lot of components should be stateless and simply render data based its props, which is handed from a component above them in the hirearchy.  
+You should try and keep few components as possible stateful. A lot of components should be stateless and simply render data based its given props.
 
-Here is a technique for figuring out where the state should live,  pulled from the original docs:
+To figure out where the state should live, you can ask yourself there questions, pulled from the original React docs:
 
 * Identify every component that renders something based on that state.
 * Find a common owner component (a single component above all the components that need the state in the hierarchy).
@@ -199,7 +197,7 @@ We've talked a lot about how data only flows one way in React, downstream, from 
 
 An example is when a form component deep into the hirearchy need to change the state in a component higher up the hirearchy.  
 
-Below is an example of how a buttonclick in the **ButtonForm** component trigger a state change in the component above it, as it can access the **onUserClick** function. 
+Below is an example of how a buttonclick in the **ButtonForm** component trigger a state change in the **App** component above it, as it can access the **onUserClick** function. 
 	
 	var ButtonForm = React.createClass({
 		render: function(){
@@ -240,22 +238,26 @@ As you can see, we're simply passing down the onUserClick method as a props, ena
 
 # refs and findDOMNode
 
-React provides a handy way to reference DOM nodes. Simply call **React.findDOMNode(component)**.
+React provides a handy way to reference DOM nodes. Simply call **React.findDOMNode(component)**, passing in the component of your choice.
 
-Use the refs attribute to reference which component you'd like to pass in as an argument in the **findDOMNode()** method.
+In order to get a reference your chosen component, you can use the *refs* attribute. Simply add a *ref* to a component like this:
 
-This is much easier demonstrated than explanied:
+	<input ref="textField" ... />
+
+From within the component rendering the input tag above, you can reference the input field through *this.refs.textField*.  
+
+Let's look at a proper example:
 
 		var ButtonForm = React.createClass({
 			focusOnField: function(){
-				React.findDOMNode(this.refs.message).focus();
+				React.findDOMNode(this.refs.textField).focus();
 			},
 			render: function(){
 				return (
 					<div>
 						<input 
 							type="text"
-							ref="message" />
+							ref="textField" />
 						<input 
 							type="submit"
 							value="Focus on the input!" 
