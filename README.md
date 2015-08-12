@@ -1,6 +1,6 @@
 # React.js for Beginners
 
-This course will teach you the basics of React.js through three nights in NYC in August 2015. The course is already fully booked, but all the learning materials are publicly available here.
+This course will teach you the basics of React.js through three nights in NYC in August 2015. It's is already fully booked, but all learning materials are publicly available.
 
 The course is aimed at professional developers interested in learning React.js, so we assume that you're comfortable with Javascript and web development in general.
 
