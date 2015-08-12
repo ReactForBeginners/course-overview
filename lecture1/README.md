@@ -4,9 +4,7 @@ This tutorial is the basis for the first lecture in the React.JS for Beginners c
 
 It doesn't assume that know any React beforehand, but you should be comfortable with Javascript.
 
-The tutorial is under development, so if you find any errors, please raise an issue, and it'll be fixed.  
-
-**All feedback is highly appreciated, both techincal and pedagogical!**  
+The tutorial is under development, so if you find any errors, please raise an issue, and it'll be fixed. **All feedback is highly appreciated, both techincal and pedagogical!**  
 
 ## Your first component
 
