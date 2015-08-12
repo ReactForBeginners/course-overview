@@ -1,6 +1,6 @@
 # React basics for beginners
 
-This tutorial is the basis for the first lecture in the React.JS for Beginners course in NYC in August 2015. 
+This tutorial is the basis for the first lecture in the [React.JS for Beginners course](http://www.meetup.com/NY-JavaScript/events/224204773/) in NYC in August 2015. 
 
 It doesn't assume that know any React beforehand, but you should be comfortable with Javascript.
 
