@@ -23,7 +23,7 @@ The *createClass* method takes one argument: the specification object. This obje
 
 Within it, you'll return a description of what you want React to render on the page. In the case above, we simply want it to render a button.   
 
-Note: The render function is a description of the UI at **any given time.** So if the data within it changes, React will take care of updating the UI accordingly.
+**Note:** The render function is a description of the UI at **any given time.** So if the data within it changes, React will take care of updating the UI accordingly.
 
 
 ## JSX - Javascript Syntax Extension
@@ -32,7 +32,7 @@ The HTML'ish syntax is not actually HTML, but something called JSX. This is simp
 
 But for now, you can simply think of it as just HTML/XML with a few extra abilities.   
 
-Note: You can write JSX in both .js and .jsx files, but you have to transform it from JSX to React.JS with a transpiler or pre-processor. You'll also need to mark you script tag with text/jsx instead of text/js. Like this:
+**Note:** You can write JSX in both .js and .jsx files, but you have to transform it from JSX to React.JS with a transpiler or pre-processor. You'll also need to mark you script tag with text/jsx instead of text/js. Like this:
 
 	<script type="text/jsx" src="main.js">
 
@@ -181,7 +181,7 @@ This example also force you to get familiar with the Reacts event system, but do
 
 The **handleClick** function then calls **this.setState()** which toggle the **active** variable between true & false.
 
-Note: Reacts [events](https://facebook.github.io/react/docs/events.html) are synthetic; they are cross browser wrappers around the browser's native events. So React makes sure that your chosen event works identically across all browsers.
+**Note:** Reacts [events](https://facebook.github.io/react/docs/events.html) are synthetic; they are cross browser wrappers around the browser's native events. So React makes sure that your chosen event works identically across all browsers.
 
 ## Where should the state live?
 
