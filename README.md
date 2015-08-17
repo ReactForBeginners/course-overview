@@ -36,7 +36,7 @@ On day 3 you'll learn how to setup your dev environment for an optimal workflow,
 
 ## Chat
 
-We have setup a [Gitter chat room](https://gitter.im/jdaudier/reactjs-workshop) for the students, to be used during and after the course.  
+We have setup a [Gitter chat room](https://gitter.im/jdaudier/reactjs-workshop) for the students, to be used during and after the course. If you haven't used Gitter before, you can simply login with your GitHub account.
 
 
 
