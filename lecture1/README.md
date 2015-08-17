@@ -319,21 +319,21 @@ When you're creating components dynamically, each of them need a unique "key" at
 
 ## Controlled components
 
-If you set a *value* prop to an **input** component, React will render an input field that always has a value that reflects its *value* prop. This is called a *controlled* component.  
+If you set a *value* prop to an **input** component, React will render an input field that outputs this *value* prop. This is called a *controlled* component.  
 
-Let's say you do declare the *value* if an **input** component to "Hello". This will result in an immutable input field.
+A consequence of this is that the input field will be immutable if you render it with a string in the *value*. (Unlike HTML, where the input field wouldn't be immutable if you did this).
 
 	render: function() {
     	return <input type="text" value="Hello!" />;
   	}
 
+The above snippet will render an input field that always says "Hello!", regardless of what the user tries to enter into it. If you want to update it, you'll need to be able to mutate the *value* prop. Like this:
 
-So instead of rendering it with a *value* of "Hello!", you should fetch a value from the state, and then update the state whenever the user interacts with the element. Like this:  
 		
 	var App = React.createClass({
 		getInitialState: function(){
 			return {
-				text: ''
+				text: 'Hello!'
 			}
 		},
 
@@ -357,5 +357,5 @@ So instead of rendering it with a *value* of "Hello!", you should fetch a value 
 	});
 
 
-We're listening for the **onChange** event, and then fetch the users input value through *event.target.value*. We then update the state. As the *value* props in the input element is set using the state, the rendered value will be updated.
+Here, we're listening for the **onChange** event. When it's triggered, we fetch the users input value through *event.target.value* and shove it into the state. As the *value* prop in the input element is pulled from the state, the new value will be rendered in the input field.
 
